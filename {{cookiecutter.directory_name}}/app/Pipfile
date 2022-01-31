@@ -8,12 +8,12 @@ fastapi = "*"
 aioredis = "*"
 uvicorn = "*"
 gunicorn = "*"
-orjson = "*"
 pydantic = {extras = ["dotenv"], version = "*"}
 sqlalchemy = "*"
 asyncpg = "*"
 alembic = "*"
 sentry-sdk = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 black = "==21.12b0"

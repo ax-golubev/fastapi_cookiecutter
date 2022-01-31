@@ -3,7 +3,6 @@ import logging
 import sentry_sdk
 import uvicorn as uvicorn
 from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
 from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from starlette.middleware.cors import CORSMiddleware
 
@@ -21,7 +20,6 @@ def get_application() -> FastAPI:
     application = FastAPI(
         title=settings.project,
         openapi_url="/api/openapi.json",
-        default_response_class=ORJSONResponse,
     )
 
     application.add_middleware(SentryAsgiMiddleware)
