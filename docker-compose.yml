@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  new_app_app:
+    container_name: new_app_app
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    env_file:
+      - docker/app/list.env
+    depends_on:
+      - new_app_postgresql
+    ports:
+      - 8000:8000
+
+  new_app_postgresql:
+    container_name: new_app_postgresql
+    image: postgres:14.1-alpine
+    ports:
+      - 5432:5432
+    env_file:
+      - docker/postgresql/list.env
+    volumes:
+      - new_app_postgresql_data:/var/lib/postgresql/data
+
+  new_app_redis:
+    container_name: new_app_redis
+    image: redis:6.2-alpine
+    volumes:
+      - new_app_redis_data:/var/lib/redis/data
+
+volumes:
+  new_app_postgresql_data:
+  new_app_redis_data:
