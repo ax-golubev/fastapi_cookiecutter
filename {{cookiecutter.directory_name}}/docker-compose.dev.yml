@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  {{cookiecutter.app_name}}_postgresql:
+    container_name: {{cookiecutter.app_name}}_postgresql
+    image: postgres:14.1-alpine
+    ports:
+      - 5432:5432
+    env_file:
+      - docker/postgresql/list.env
+    volumes:
+      - {{cookiecutter.app_name}}_postgresql_data:/var/lib/postgresql/data
+
+  {{cookiecutter.app_name}}_redis:
+    container_name: {{cookiecutter.app_name}}_redis
+    image: redis:6.2-alpine
+    volumes:
+      - {{cookiecutter.app_name}}_redis_data:/var/lib/redis/data
+
+volumes:
+  {{cookiecutter.app_name}}_postgresql_data:
+  {{cookiecutter.app_name}}_redis_data:
